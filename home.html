@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UrbanChimney - Services</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="logo">
+<h1>🏠 UrbanChimney.in</h1>
+<p id="welcome"></p>
+</div>
+
+<!-- Chimney Cleaning -->
+
+<div class="card">
+
+<h2>🧹 Chimney Cleaning</h2>
+
+<p>✔ Basic Cleaning</p>
+<p>✔ Deep Cleaning</p>
+
+<button onclick="bookService('Chimney Cleaning')">
+Book Now
+</button>
+
+</div>
+
+<br>
+
+<!-- Chimney Repair -->
+
+<div class="card">
+
+<h2>🔧 Chimney Repair</h2>
+
+<p>✔ Motor Not Working</p>
+<p>✔ Light Not Working</p>
+<p>✔ I Don't Know</p>
+
+<button onclick="bookService('Chimney Repair')">
+Book Now
+</button>
+
+</div>
+
+<br>
+
+<!-- Spare Parts -->
+
+<div class="card">
+
+<h2>⚙️ Chimney Spare Parts</h2>
+
+<p>✔ New Motor</p>
+<p>✔ Lights</p>
+
+<button onclick="bookService('Chimney Spare Parts')">
+Book Now
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const name = localStorage.getItem("customerName");
+
+document.getElementById("welcome").innerHTML =
+"Welcome, <b>" + name + "</b>";
+
+function bookService(service){
+
+localStorage.setItem("selectedService",service);
+
+window.location.href="booking.html";
+
+}
+
+</script>
+
+</body>
+</html>

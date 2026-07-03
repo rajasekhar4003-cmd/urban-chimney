@@ -1,73 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment | UrbanChimney</title>
-
-<link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-
-<div class="login-container">
-
-<div class="card">
-
-<h2>Payment</h2>
-
-<h3 id="serviceName"></h3>
-
-<p>Select Payment Method</p>
-
-<label>
-<input type="radio" name="payment" value="UPI" checked>
-💜 UPI
-</label>
-
-<br><br>
-
-<label>
-<input type="radio" name="payment" value="PhonePe">
-🟣 PhonePe
-</label>
-
-<br><br>
-
-<label>
-<input type="radio" name="payment" value="Google Pay">
-🟢 Google Pay
-</label>
-
-<br><br>
-
-<label>
-<input type="radio" name="payment" value="Paytm">
-🔵 Paytm
-</label>
-
-<br><br>
-
-<label>
-<input type="radio" name="payment" value="Cash After Service">
-💵 Cash After Service
-</label>
-
-<br><br>
-
-<button onclick="payNow()">
-Pay Now
-</button>
-
-</div>
-
-</div>
-
 <script>
-
-document.getElementById("serviceName").innerHTML =
-localStorage.getItem("selectedService");
-
 function payNow(){
 
 let payment =
@@ -75,14 +6,21 @@ document.querySelector('input[name="payment"]:checked').value;
 
 localStorage.setItem("paymentMethod",payment);
 
-// Demo payment
-alert("Payment Successful!");
+// YOUR UPI ID
+let upiID = "9701434006-5@YBL";
 
-window.location.href="success.html";
+// Merchant name
+let name = "UrbanChimney";
+
+// Optional amount (you can change)
+let amount = "499";
+
+// UPI Deep Link (works in GPay, PhonePe, Paytm)
+let upiLink =
+`upi://pay?pa=${upiID}&pn=${name}&am=${amount}&cu=INR&tn=UrbanChimney%20Payment`;
+
+// Open UPI app
+window.location.href = upiLink;
 
 }
-
 </script>
-
-</body>
-</html>

@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== BACKGROUND ANIMATION ===== */
+/* ===== BACKGROUND ===== */
 body{
     margin:0;
     font-family: Arial, sans-serif;
@@ -27,7 +27,7 @@ body{
     100%{background-position:0% 50%;}
 }
 
-/* ===== FORM CARD ===== */
+/* ===== FORM ===== */
 form{
     width:100%;
     max-width:450px;
@@ -56,10 +56,27 @@ input{
     border-radius:12px;
     font-size:16px;
     outline:none;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.9);
 }
 
-/* BUTTON */
+/* LOCATION BUTTON */
+.loc-btn{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    background:#0ea5e9;
+    color:white;
+    cursor:pointer;
+}
+
+.loc-btn:hover{
+    background:#0284c7;
+}
+
+/* SUBMIT BUTTON */
 button{
     width:100%;
     padding:14px;
@@ -71,34 +88,17 @@ button{
     color:white;
     background: linear-gradient(90deg,#22c55e,#16a34a);
     cursor:pointer;
-    transition:0.3s;
 }
 
 button:hover{
     transform: scale(1.03);
-    background: linear-gradient(90deg,#16a34a,#15803d);
 }
 
-/* MOBILE PERFECT FIT */
+/* MOBILE */
 @media (max-width: 480px){
     form{
         max-width:100%;
         padding:18px;
-        border-radius:15px;
-    }
-
-    h2{
-        font-size:20px;
-    }
-
-    input{
-        padding:12px;
-        font-size:15px;
-    }
-
-    button{
-        font-size:16px;
-        padding:12px;
     }
 }
 
@@ -117,6 +117,14 @@ button:hover{
 <input type="text" name="service" placeholder="Service Type" required>
 <input type="text" name="address" placeholder="Full Address" required>
 <input type="text" name="landmark" placeholder="Landmark">
+
+<!-- LOCATION FIELD -->
+<input type="text" id="location" name="location" placeholder="Location will appear here" readonly>
+
+<button type="button" class="loc-btn" onclick="getLocation()">
+📍 Get My Location
+</button>
+
 <input type="date" name="date" required>
 <input type="time" name="time" required>
 
@@ -126,6 +134,46 @@ button:hover{
 <button type="submit">Confirm Booking</button>
 
 </form>
+
+<script>
+
+function getLocation(){
+
+    if(navigator.geolocation){
+
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+
+function showPosition(position){
+
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+
+    let mapLink = "https://www.google.com/maps?q=" + lat + "," + lon;
+
+    document.getElementById("location").value = mapLink;
+
+    alert("Location added successfully!");
+}
+
+function showError(error){
+
+    if(error.code == 1){
+        alert("Permission denied");
+    } else if(error.code == 2){
+        alert("Location unavailable");
+    } else if(error.code == 3){
+        alert("Request timeout");
+    } else {
+        alert("Unknown error");
+    }
+}
+
+</script>
 
 </body>
 </html>

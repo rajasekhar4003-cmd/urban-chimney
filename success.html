@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Successful</title>
 
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="card" style="text-align:center;">
+
+<h1 style="color:green;">✅</h1>
+
+<h2>Booking Confirmed</h2>
+
+<p>Your service booking has been confirmed.</p>
+
+<h3 id="bookingId"></h3>
+
+<p><strong>Service:</strong></p>
+
+<p id="service"></p>
+
+<p><strong>Payment:</strong></p>
+
+<p id="payment"></p>
+
+<button onclick="goHome()">
+Home
+</button>
+
+<br><br>
+
+<button onclick="trackBooking()">
+Track Booking
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("service").innerHTML =
+localStorage.getItem("selectedService");
+
+document.getElementById("payment").innerHTML =
+localStorage.getItem("paymentMethod");
+
+let booking="UC"+Math.floor(Math.random()*900000+100000);
+
+document.getElementById("bookingId").innerHTML=
+"Booking ID : "+booking;
+
+localStorage.setItem("bookingId",booking);
+
+function goHome(){
+
+window.location.href="home.html";
+
+}
+
+function trackBooking(){
+
+window.location.href="track.html";
+
+}
+
+</script>
+
+</body>
+</html>

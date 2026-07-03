@@ -1,1 +1,61 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile | UrbanChimney</title>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="card">
+
+<h2>👤 My Profile</h2>
+
+<p><strong>Name</strong></p>
+<input type="text" id="name" readonly>
+
+<p><strong>Mobile</strong></p>
+<input type="text" id="mobile" readonly>
+
+<p><strong>City</strong></p>
+<input type="text" id="city" readonly>
+
+<br>
+
+<button onclick="window.location.href='track.html'">
+My Bookings
+</button>
+
+<br><br>
+
+<button onclick="window.location.href='home.html'">
+Home
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("name").value =
+localStorage.getItem("customerName");
+
+document.getElementById("mobile").value =
+localStorage.getItem("customerMobile");
+
+document.getElementById("city").value =
+localStorage.getItem("customerCity");
+
+</script>
+
+</body>
+</html>
+```
 

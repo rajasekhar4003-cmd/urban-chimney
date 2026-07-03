@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Service | UrbanChimney</title>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="card">
+
+<h2>Book Service</h2>
+
+<label>Name</label>
+<input type="text" id="name" readonly>
+
+<label>Mobile Number</label>
+<input type="text" id="mobile" readonly>
+
+<label>City</label>
+<input type="text" id="city" readonly>
+
+<label>Selected Service</label>
+<input type="text" id="service" readonly>
+
+<label>Full Address</label>
+<input type="text" id="address" placeholder="Enter your address">
+
+<label>Landmark</label>
+<input type="text" id="landmark" placeholder="Nearby landmark">
+
+<label>Select Date</label>
+<input type="date" id="date">
+
+<label>Select Time</label>
+<input type="time" id="time">
+
+<button onclick="confirmBooking()">Confirm Booking</button>
+
+</div>
+
+</div>
+
+<script>
+
+document.getElementById("name").value =
+localStorage.getItem("customerName");
+
+document.getElementById("mobile").value =
+localStorage.getItem("customerMobile");
+
+document.getElementById("city").value =
+localStorage.getItem("customerCity");
+
+document.getElementById("service").value =
+localStorage.getItem("selectedService");
+
+function confirmBooking(){
+
+let address=document.getElementById("address").value;
+
+let landmark=document.getElementById("landmark").value;
+
+let date=document.getElementById("date").value;
+
+let time=document.getElementById("time").value;
+
+if(address=="" || date=="" || time==""){
+
+alert("Please fill all details");
+
+return;
+
+}
+
+localStorage.setItem("address",address);
+
+localStorage.setItem("landmark",landmark);
+
+localStorage.setItem("date",date);
+
+localStorage.setItem("time",time);
+
+window.location.href="payment.html";
+
+}
+
+</script>
+
+</body>
+</html>

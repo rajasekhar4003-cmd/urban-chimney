@@ -5,70 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Booking Successful</title>
 
-<link rel="stylesheet" href="css/style.css">
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#0f172a,#1e3a8a,#0ea5e9);
+}
+
+.card{
+    width:90%;
+    max-width:420px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+h1{
+    color:#22c55e;
+    font-size:50px;
+    margin:0;
+}
+
+h2{
+    margin:10px 0;
+}
+
+p{
+    margin:8px 0;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.home{
+    background:#22c55e;
+    color:white;
+}
+
+.track{
+    background:#0ea5e9;
+    color:white;
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="login-container">
+<div class="card">
 
-<div class="card" style="text-align:center;">
-
-<h1 style="color:green;">✅</h1>
-
+<h1>✅</h1>
 <h2>Booking Confirmed</h2>
 
 <p>Your service booking has been confirmed.</p>
 
 <h3 id="bookingId"></h3>
 
-<p><strong>Service:</strong></p>
+<p><b>Service:</b></p>
+<p id="service">Loading...</p>
 
-<p id="service"></p>
+<p><b>Payment:</b></p>
+<p id="payment">Loading...</p>
 
-<p><strong>Payment:</strong></p>
-
-<p id="payment"></p>
-
-<button onclick="goHome()">
-Home
-</button>
-
-<br><br>
-
-<button onclick="trackBooking()">
-Track Booking
-</button>
-
-</div>
+<button class="home" onclick="goHome()">Home</button>
+<button class="track" onclick="trackBooking()">Track Booking</button>
 
 </div>
 
 <script>
 
-document.getElementById("service").innerHTML =
-localStorage.getItem("selectedService");
+// GET DATA SAFELY
+let service = localStorage.getItem("selectedService");
+let payment = localStorage.getItem("paymentMethod");
 
-document.getElementById("payment").innerHTML =
-localStorage.getItem("paymentMethod");
+// FIX EMPTY ISSUE
+if(!service){
+    service = "Not Selected";
+}
+if(!payment){
+    payment = "Not Available";
+}
 
-let booking="UC"+Math.floor(Math.random()*900000+100000);
+// SHOW DATA
+document.getElementById("service").innerText = service;
+document.getElementById("payment").innerText = payment;
 
-document.getElementById("bookingId").innerHTML=
-"Booking ID : "+booking;
+// BOOKING ID
+let booking = "UC" + Math.floor(Math.random() * 900000 + 100000);
 
-localStorage.setItem("bookingId",booking);
+document.getElementById("bookingId").innerText =
+"Booking ID: " + booking;
 
+// SAVE
+localStorage.setItem("bookingId", booking);
+
+// BUTTONS
 function goHome(){
-
-window.location.href="home.html";
-
+    window.location.href = "home.html";
 }
 
 function trackBooking(){
-
-window.location.href="track.html";
-
+    window.location.href = "track.html";
 }
 
 </script>

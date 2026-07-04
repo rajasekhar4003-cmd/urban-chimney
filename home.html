@@ -3,73 +3,119 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Chimney | Services</title>
+  <title>UrbanChimney | Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body class="home-page">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">
-        <img src="logo.png" alt="Urban Chimney logo">
+        <span class="brand-mark">UC</span>
         <span>UrbanChimney</span>
       </a>
       <nav class="nav-links">
-        <a href="index.html">Welcome</a>
+        <a href="index.html">Login</a>
         <a href="home.html" class="active">Home</a>
         <a href="booking.html">Book</a>
         <a href="track.html">Track</a>
         <a href="profile.html">Profile</a>
+        <button type="button" id="logoutButton">Logout</button>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
-    <section class="hero">
+    <section class="hero-banner">
       <div class="hero-card">
-        <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Certified experts</span>
-        <h1>Professional chimney cleaning and repair for every modern kitchen.</h1>
-        <p>We offer expert inspections, fast repairs, and genuine spare parts with transparent pricing and same-day support.</p>
+        <span class="hero-badge"><i class="fa-solid fa-bolt"></i> Urban Company-style convenience</span>
+        <h1 id="welcomeName">Welcome back</h1>
+        <p id="welcomeMobile">Your premium home service is just a tap away.</p>
         <div class="inline-actions">
-          <a class="btn btn-secondary" href="tel:+918886093403"><i class="fa-solid fa-phone"></i> Call now</a>
-          <a class="btn btn-success" href="https://wa.me/918886093403" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+          <a class="btn btn-secondary" href="booking.html"><i class="fa-solid fa-calendar-check"></i> Book now</a>
+          <a class="btn btn-success" href="track.html"><i class="fa-solid fa-location-dot"></i> Track service</a>
+        </div>
+        <div class="dashboard-highlight" style="margin-top: 16px;">
+          <div>
+            <strong id="bookingSnapshot">Your next service is ready to schedule.</strong>
+            <p class="muted">Smart reminders, live updates, and transparent billing.</p>
+          </div>
+          <div class="btn btn-secondary">Verified</div>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="panel">
-          <strong>Why families choose us</strong>
-          <p class="muted">Clean air, quiet operation, and dependable service every time.</p>
-        </div>
-        <div class="panel">
-          <strong>Popular packages</strong>
-          <p class="muted">Cleaning, repair, installation, and regular maintenance plans.</p>
-        </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1200&q=80" alt="Professional home service technician at work">
       </div>
     </section>
 
     <section>
       <div class="section-title">
-        <h2>Our services</h2>
+        <h2>Popular services</h2>
         <a class="btn btn-primary" href="booking.html">Book now</a>
       </div>
       <div class="service-grid">
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-broom"></i></div>
-          <h3>Chimney Cleaning</h3>
-          <p>Deep cleaning for kitchen chimneys with professional tools and a hygienic finish.</p>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80" alt="Kitchen chimney cleaning">
+          <div class="card-body">
+            <h3>Chimney Cleaning</h3>
+            <p>Deep cleaning with premium tools, hygienic finish, and expert care.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=Chimney%20Cleaning">Book service</a>
+            </div>
+          </div>
         </article>
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h3>Repair & Maintenance</h3>
-          <p>Motor repair, PCB repair, suction issues, and preventive maintenance support.</p>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80" alt="Professional air conditioner repair technician">
+          <div class="card-body">
+            <h3>AC Service</h3>
+            <p>Fast diagnostics, efficient repairs, and maintenance for air conditioning units.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=AC%20Service">Book service</a>
+            </div>
+          </div>
         </article>
-        <article class="card">
-          <div class="icon"><i class="fa-solid fa-gears"></i></div>
-          <h3>Spare Parts</h3>
-          <p>Original motors, filters, switches, and accessories for leading chimney brands.</p>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80" alt="Electrician working in a modern home">
+          <div class="card-body">
+            <h3>Electrical</h3>
+            <p>Certified electricians for switchboards, wiring, fittings, and repairs.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=Electrical">Book service</a>
+            </div>
+          </div>
+        </article>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=900&q=80" alt="Plumber fixing pipes in a home">
+          <div class="card-body">
+            <h3>Plumbing</h3>
+            <p>Leak repairs, pipe fixing, water pressure checks, and bathroom fittings.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=Plumbing">Book service</a>
+            </div>
+          </div>
+        </article>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80" alt="Professional home cleaning service">
+          <div class="card-body">
+            <h3>Cleaning</h3>
+            <p>Deep cleaning for kitchens, bathrooms, upholstery, and entire homes.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=Cleaning">Book service</a>
+            </div>
+          </div>
+        </article>
+        <article class="card service-card">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80" alt="House painting service">
+          <div class="card-body">
+            <h3>Painting</h3>
+            <p>Interior and exterior paint jobs with premium finishes and clean execution.</p>
+            <div class="card-footer">
+              <a class="btn btn-secondary" href="booking.html?service=Painting">Book service</a>
+            </div>
+          </div>
         </article>
       </div>
     </section>
@@ -77,10 +123,10 @@
 
   <footer class="footer">
     <div class="footer-brand">
-      <img src="logo.png" alt="UrbanChimney logo">
+      <span class="brand-mark">UC</span>
       <span>UrbanChimney</span>
     </div>
-    <p>UrbanChimney © 2026 • Smart home care.</p>
+    <p>UrbanChimney © 2026 • Crafted for modern homes.</p>
   </footer>
   <script src="app.js"></script>
 </body>

@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,73 +8,69 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body class="tracking-page">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">
-        <img src="logo.png" alt="Urban Chimney logo">
+        <span class="brand-mark">UC</span>
         <span>UrbanChimney</span>
       </a>
       <nav class="nav-links">
-        <a href="index.html">Welcome</a>
         <a href="home.html">Home</a>
         <a href="booking.html">Book</a>
         <a href="track.html" class="active">Track</a>
         <a href="profile.html">Profile</a>
+        <button type="button" id="logoutButton">Logout</button>
       </nav>
     </div>
   </header>
 
   <main class="page-shell">
-    <section class="form-card" style="max-width: 720px; margin: 18px auto 0;">
-      <h2>Track your booking</h2>
-      <p class="muted">Current status and service details for your booking.</p>
-      <div class="form-grid">
-        <div>
-          <label>Booking ID</label>
-          <p id="bookingId" class="muted"></p>
-        </div>
-        <div>
-          <label>Customer name</label>
-          <p id="customer" class="muted"></p>
-        </div>
-        <div>
-          <label>Service</label>
-          <p id="serviceOutput" class="muted"></p>
-        </div>
-        <div>
-          <label>Address</label>
-          <p id="addressOutput" class="muted"></p>
-        </div>
-        <div>
-          <label>Date</label>
-          <p id="dateOutput" class="muted"></p>
-        </div>
-        <div>
-          <label>Time</label>
-          <p id="timeOutput" class="muted"></p>
-        </div>
+    <section class="profile-card form-card">
+      <div class="hero-image" style="min-height: 280px;">
+        <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" alt="Technician travelling to a customer home">
       </div>
-      <div class="notice">
-        <strong>Booking status</strong>
-        <ul class="status-list">
-          <li>✅ Booking confirmed</li>
-          <li>👨‍🔧 Technician will be assigned soon</li>
-          <li>🚗 Technician on the way</li>
-          <li>🎉 Service completed</li>
-        </ul>
-      </div>
-      <div class="inline-actions">
-        <a class="btn btn-primary" href="home.html">Back to home</a>
-        <a class="btn btn-secondary" href="profile.html">View profile</a>
+      <div>
+        <h2>Track your booking</h2>
+        <p class="muted">Current progress and service details for your booking.</p>
+        <div class="form-grid">
+          <div>
+            <label>Booking ID</label>
+            <p id="trackBookingId" class="muted"></p>
+          </div>
+          <div>
+            <label>Service</label>
+            <p id="trackService" class="muted"></p>
+          </div>
+          <div>
+            <label>Date</label>
+            <p id="trackDate" class="muted"></p>
+          </div>
+          <div>
+            <label>Time</label>
+            <p id="trackTime" class="muted"></p>
+          </div>
+          <div class="full-width">
+            <label>Address</label>
+            <p id="trackAddress" class="muted"></p>
+          </div>
+        </div>
+        <div class="timeline-card" style="margin-top: 16px;">
+          <div id="trackTimeline"></div>
+        </div>
+        <div class="inline-actions">
+          <a class="btn btn-primary" href="home.html">Back to home</a>
+          <a class="btn btn-secondary" href="profile.html">View profile</a>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-brand">
-      <img src="logo.png" alt="UrbanChimney logo">
+      <span class="brand-mark">UC</span>
       <span>UrbanChimney</span>
     </div>
     <p>UrbanChimney © 2026 • Real-time updates.</p>
@@ -83,5 +78,5 @@
   <script src="app.js"></script>
 </body>
 </html>
-```
+
 

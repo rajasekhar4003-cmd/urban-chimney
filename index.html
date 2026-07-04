@@ -3,21 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UrbanChimney | Home Services</title>
+  <title>UrbanChimney | Premium Home Services</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body class="auth-page">
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html">
-        <img src="logo.png" alt="Urban Chimney logo">
+        <span class="brand-mark">UC</span>
         <span>UrbanChimney</span>
       </a>
       <nav class="nav-links">
-        <a href="index.html" class="active">Welcome</a>
+        <a href="index.html" class="active">Login</a>
         <a href="home.html">Home</a>
         <a href="booking.html">Book</a>
         <a href="track.html">Track</a>
@@ -28,35 +29,35 @@
 
   <main class="page-shell auth-shell">
     <section class="hero-card">
-      <span class="hero-badge">Trusted by 5,000+ homes</span>
-      <h1>Secure doorstep chimney service with OTP login.</h1>
-      <p>Verify your mobile number effortlessly, book fast, and track your technician from anywhere.</p>
+      <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Trusted by 5,000+ happy homes</span>
+      <h1>Premium home services that feel effortless.</h1>
+      <p>Secure OTP login, verified technicians, transparent pricing, and a polished booking experience for every service you need.</p>
       <div class="inline-actions">
-        <a class="btn btn-secondary" href="booking.html">Book a service</a>
+        <a class="btn btn-secondary" href="home.html">Explore services</a>
         <a class="btn btn-success" href="track.html">Track booking</a>
       </div>
-      <div class="stats-grid">
-        <div class="stat"><strong>24/7</strong><span>Support</span></div>
-        <div class="stat"><strong>4.9★</strong><span>Rated</span></div>
-        <div class="stat"><strong>30 min</strong><span>Response</span></div>
-        <div class="stat"><strong>100%</strong><span>Genuine parts</span></div>
+      <div class="stats-grid" style="margin-top: 18px;">
+        <div class="stat-card"><strong>24/7</strong><span class="muted">Support</span></div>
+        <div class="stat-card"><strong>4.9★</strong><span class="muted">Rated</span></div>
+        <div class="stat-card"><strong>30 min</strong><span class="muted">Response</span></div>
+        <div class="stat-card"><strong>100%</strong><span class="muted">Verified experts</span></div>
       </div>
     </section>
 
     <section class="form-card login-card">
-      <div class="login-icon">🔐</div>
-      <h2>Welcome back</h2>
+      <div class="login-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+      <h2>Secure login</h2>
       <p class="muted">Enter your mobile number and verify with OTP to continue.</p>
       <form id="loginForm">
         <div class="form-grid">
           <div class="full-width">
             <label for="mobile">Mobile number</label>
-            <input type="tel" id="mobile" maxlength="10" placeholder="Enter 10 digit mobile number" required>
+            <input type="tel" id="mobile" maxlength="10" placeholder="Enter 10-digit mobile number" required>
           </div>
           <div class="full-width">
             <label for="otp">OTP</label>
             <div class="otp-row">
-              <input type="text" id="otp" maxlength="4" placeholder="Enter 4-digit OTP" autocomplete="one-time-code">
+              <input type="text" id="otp" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
               <button class="btn btn-secondary otp-btn" type="button" id="sendOtpButton">Send OTP</button>
             </div>
           </div>
@@ -66,16 +67,16 @@
           <button class="btn btn-primary" type="submit" id="verifyOtpButton" disabled>Verify & continue</button>
         </div>
       </form>
-      <div class="notice">Demo OTP: 1234. A real SMS provider can be integrated later.</div>
+      <div class="notice">Demo OTP: 123456. This is a safe demo flow for a production-ready experience.</div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-brand">
-      <img src="logo.png" alt="UrbanChimney logo">
+      <span class="brand-mark">UC</span>
       <span>UrbanChimney</span>
     </div>
-    <p>UrbanChimney © 2026 • Clean air, safe homes.</p>
+    <p>UrbanChimney © 2026 • Premium home care, beautifully delivered.</p>
   </footer>
   <script src="app.js"></script>
 </body>

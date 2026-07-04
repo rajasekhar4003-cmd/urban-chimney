@@ -13,21 +13,39 @@
 <body class="home-page">
   <header class="site-header">
     <div class="header-inner">
-      <a class="brand" href="index.html">
+      <button class="menu-toggle" id="drawerToggle" aria-label="Open navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a class="brand" href="home.html">
         <span class="brand-mark">UC</span>
         <span>UrbanChimney</span>
       </a>
-      <nav class="nav-links">
-        <a href="home.html" class="active">Home</a>
-        <a href="services.html">Services</a>
-        <a href="spare-parts.html">Spare Parts</a>
-        <a href="track.html">Tracking</a>
-        <a href="profile.html">Profile</a>
-        <a href="admin.html">Admin</a>
-        <button type="button" id="logoutButton">Logout</button>
-      </nav>
     </div>
   </header>
+
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="side-drawer" id="sideDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <div>
+        <p class="drawer-brand">UrbanChimney</p>
+        <p class="drawer-subtitle">Home service dashboard</p>
+      </div>
+      <button class="drawer-close" id="drawerClose" aria-label="Close navigation menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <nav class="drawer-nav" aria-label="Main navigation">
+      <ul class="drawer-list">
+        <li><a class="drawer-item" href="home.html"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+        <li><a class="drawer-item" href="profile.html"><i class="fa-solid fa-user"></i><span>Profile</span></a></li>
+        <li><a class="drawer-item" href="services.html"><i class="fa-solid fa-hands-holding-circle"></i><span>Services</span></a></li>
+        <li><a class="drawer-item" href="spare-parts.html"><i class="fa-solid fa-box-open"></i><span>Spare Parts</span></a></li>
+        <li><a class="drawer-item" href="bookings.html"><i class="fa-solid fa-calendar-check"></i><span>My Bookings</span></a></li>
+        <li><a class="drawer-item" href="track.html"><i class="fa-solid fa-location-dot"></i><span>Tracking</span></a></li>
+        <li><a class="drawer-item" href="settings.html"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+        <li><a class="drawer-item" href="admin.html"><i class="fa-solid fa-user-shield"></i><span>Admin</span></a></li>
+        <li><button class="drawer-item drawer-logout" type="button" data-action="logout"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></button></li>
+      </ul>
+    </nav>
+  </aside>
 
   <main class="page-shell">
     <section class="hero-banner">
@@ -77,6 +95,31 @@
             </div>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="contact-panel">
+      <div class="section-title">
+        <div>
+          <h2>Contact details</h2>
+          <p class="muted">Reach out directly for urgent bookings and customer updates.</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-info">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <strong>Phone</strong>
+            <p>+91 90000 12345</p>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <strong>Email</strong>
+            <p>contact@urbanchimney.com</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>

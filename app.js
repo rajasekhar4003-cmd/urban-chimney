@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const SESSION_DURATION_MS = 30 * 60 * 1000;
   const DEMO_OTP = '123456';
-  const protectedPages = ['home.html', 'booking.html', 'payment.html', 'profile.html', 'track.html', 'success.html', 'services.html', 'spare-parts.html'];
+  const OWNER_CONTACT = {
+    mobile: '+91 90000 12345',
+    email: 'contact@urbanchimney.com'
+  };
+  const protectedPages = ['home.html', 'booking.html', 'payment.html', 'profile.html', 'track.html', 'success.html', 'services.html', 'spare-parts.html', 'admin.html', 'settings.html', 'bookings.html'];
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const body = document.body;
   const loginForm = document.getElementById('loginForm');
@@ -181,12 +185,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const getServicePriceLabel = (service) => getServiceDetails(service).priceLabel;
 
   const fillProfileFields = () => {
-    const profileName = document.getElementById('profileName');
-    const profileMobile = document.getElementById('profileMobile');
-    const profileCity = document.getElementById('profileCity');
-    if (profileName) profileName.value = localStorage.getItem(AUTH_KEYS.name) || 'Guest';
-    if (profileMobile) profileMobile.value = localStorage.getItem(AUTH_KEYS.mobile) || 'Not available';
-    if (profileCity) profileCity.value = localStorage.getItem(AUTH_KEYS.city) || 'Not provided';
+    const fields = [
+      { id: 'profileName', value: localStorage.getItem(AUTH_KEYS.name) || 'Guest' },
+      { id: 'profileMobile', value: localStorage.getItem(AUTH_KEYS.mobile) || 'Not available' },
+      { id: 'profileCity', value: localStorage.getItem(AUTH_KEYS.city) || 'Not provided' },
+      { id: 'settingsName', value: localStorage.getItem(AUTH_KEYS.name) || 'Guest' },
+      { id: 'settingsMobile', value: localStorage.getItem(AUTH_KEYS.mobile) || 'Not available' },
+      { id: 'settingsCity', value: localStorage.getItem(AUTH_KEYS.city) || 'Not provided' }
+    ];
+
+    fields.forEach(({ id, value }) => {
+      const element = document.getElementById(id);
+      if (element) element.value = value;
+    });
   };
 
   const renderBookingHistory = () => {
@@ -566,7 +577,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `Booking ID: ${booking.id}`
     ].join('%0A');
 
-    const mailtoLink = `mailto:KRS.MF66@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    const mailtoLink = `mailto:${encodeURIComponent(OWNER_CONTACT.email)}?subject=${encodeURIComponent(subject)}&body=${body}`;
     try {
       window.location.href = mailtoLink;
     } catch (error) {
@@ -592,6 +603,55 @@ document.addEventListener('DOMContentLoaded', () => {
         clearAuthState();
         window.location.href = 'index.html';
       });
+    });
+  };
+
+  const initDrawerMenu = () => {
+    const drawerToggle = document.getElementById('drawerToggle');
+    const drawerClose = document.getElementById('drawerClose');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const sideDrawer = document.getElementById('sideDrawer');
+    const drawerItems = document.querySelectorAll('.drawer-item');
+
+    if (!drawerToggle || !drawerClose || !drawerOverlay || !sideDrawer) return;
+
+    const closeDrawer = () => {
+      sideDrawer.classList.remove('open');
+      drawerOverlay.classList.remove('active');
+      document.body.classList.remove('drawer-open');
+      drawerOverlay.setAttribute('aria-hidden', 'true');
+      sideDrawer.setAttribute('aria-hidden', 'true');
+    };
+
+    const openDrawer = () => {
+      sideDrawer.classList.add('open');
+      drawerOverlay.classList.add('active');
+      document.body.classList.add('drawer-open');
+      drawerOverlay.setAttribute('aria-hidden', 'false');
+      sideDrawer.setAttribute('aria-hidden', 'false');
+    };
+
+    drawerToggle.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    drawerItems.forEach((item) => {
+      item.addEventListener('click', (event) => {
+        const action = item.dataset.action;
+        if (action === 'logout') {
+          event.preventDefault();
+          clearAuthState();
+          window.location.href = 'index.html';
+          return;
+        }
+        closeDrawer();
+      });
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && sideDrawer.classList.contains('open')) {
+        closeDrawer();
+      }
     });
   };
 
@@ -709,6 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initAuth();
   initHeaderActions();
+  initDrawerMenu();
   initLogin();
   initLocation();
   fillProfileFields();

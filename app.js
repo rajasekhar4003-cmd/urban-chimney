@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const sendOtpButton = document.getElementById('sendOtpButton');
   const verifyOtpButton = document.getElementById('verifyOtpButton');
   const formMessage = document.getElementById('formMessage');
+  const otpStep = document.getElementById('otpStep');
+  const verifyStep = document.getElementById('verifyStep');
+
+  const toggleOtpFields = (visible) => {
+    if (otpStep) otpStep.hidden = !visible;
+    if (verifyStep) verifyStep.hidden = !visible;
+  };
 
   const showToast = (message, type = 'info') => {
     const stack = document.getElementById('toastStack');
@@ -103,6 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
       clearAuthState();
       window.location.replace('index.html');
     }
+  };
+
+  const checkSession = () => {
+    if (protectedPages.includes(currentPage) && !isSessionValid()) {
+      clearAuthState();
+      window.location.replace('index.html');
+      return true;
+    }
+    return false;
   };
 
   const requestOtp = async (mobile) => new Promise((resolve) => {
@@ -366,6 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
           time: time.value,
           city: bookingCity.value,
           mobile: bookingMobile.value.trim(),
+          customerName: bookingName.value.trim(),
           createdAt: new Date().toLocaleString()
         };
 
@@ -375,11 +392,17 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem(AUTH_KEYS.date, booking.date);
         localStorage.setItem(AUTH_KEYS.time, booking.time);
         localStorage.setItem(AUTH_KEYS.location, locationField ? locationField.value : '');
-        localStorage.setItem(AUTH_KEYS.name, bookingName.value.trim());
-        localStorage.setItem(AUTH_KEYS.mobile, bookingMobile.value.trim());
+        localStorage.setItem(AUTH_KEYS.name, booking.customerName);
+        localStorage.setItem(AUTH_KEYS.mobile, booking.mobile);
         localStorage.setItem(AUTH_KEYS.city, bookingCity.value);
         localStorage.setItem(AUTH_KEYS.bookingAmount, String(getServiceAmount(booking.service)));
+        localStorage.setItem(AUTH_KEYS.paymentMethod, 'Pending selection');
         saveBookingHistory(booking);
+        sendBookingNotificationEmail({
+          ...booking,
+          amount: getServiceAmount(booking.service),
+          paymentMethod: 'Pending selection'
+        });
         showToast('Booking confirmed. Continue to payment.', 'success');
         window.setTimeout(() => window.location.href = 'payment.html', 400);
         return;
@@ -457,7 +480,19 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('Please choose a payment method.', 'error');
           return;
         }
-        localStorage.setItem(AUTH_KEYS.paymentMethod, selectedPayment.value);
+        const paymentMethod = selectedPayment.value;
+        localStorage.setItem(AUTH_KEYS.paymentMethod, paymentMethod);
+        sendBookingNotificationEmail({
+          id: localStorage.getItem(AUTH_KEYS.bookingId) || 'UC-1001',
+          service: localStorage.getItem(AUTH_KEYS.selectedService) || 'Chimney Cleaning',
+          address: localStorage.getItem(AUTH_KEYS.address) || 'Not provided',
+          date: localStorage.getItem(AUTH_KEYS.date) || 'Today',
+          time: localStorage.getItem(AUTH_KEYS.time) || 'As scheduled',
+          mobile: localStorage.getItem(AUTH_KEYS.mobile) || 'N/A',
+          customerName: localStorage.getItem(AUTH_KEYS.name) || 'Guest',
+          amount: localStorage.getItem(AUTH_KEYS.bookingAmount) || '599',
+          paymentMethod
+        });
         showToast('Payment selected. Your booking is confirmed.', 'success');
         window.setTimeout(() => {
           window.location.href = 'success.html';
@@ -492,14 +527,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  const sendBookingNotificationEmail = (booking) => {
+    const customerName = booking.customerName || localStorage.getItem(AUTH_KEYS.name) || 'Guest';
+    const mobileNumber = booking.mobile || localStorage.getItem(AUTH_KEYS.mobile) || 'N/A';
+    const amount = booking.amount || localStorage.getItem(AUTH_KEYS.bookingAmount) || getServiceAmount(booking.service);
+    const paymentMethod = booking.paymentMethod || localStorage.getItem(AUTH_KEYS.paymentMethod) || 'Pending selection';
+    const subject = `Urban Chimney Booking Confirmation - ${booking.id}`;
+    const body = [
+      `Customer Name: ${customerName}`,
+      `Mobile Number: ${mobileNumber}`,
+      `Selected Service: ${booking.service}`,
+      `Booking Date: ${booking.date}`,
+      `Booking Time: ${booking.time}`,
+      `Address: ${booking.address}`,
+      `Payment Method: ${paymentMethod}`,
+      `Amount: ₹${amount}`,
+      `Booking ID: ${booking.id}`
+    ].join('%0A');
+
+    const mailtoLink = `mailto:KRS.MF66@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    try {
+      window.location.href = mailtoLink;
+    } catch (error) {
+      console.warn('Unable to open mail client.', error);
+    }
+  };
+
   const initAuth = () => {
-    if (protectedPages.includes(currentPage)) {
+    if (currentPage === 'index.html') {
       redirectBasedOnSession();
       return;
     }
 
-    if (currentPage === 'index.html') {
+    if (protectedPages.includes(currentPage)) {
       redirectBasedOnSession();
+      window.setInterval(checkSession, 1000);
     }
   };
 
@@ -516,14 +578,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!loginForm) return;
     let otpSent = false;
 
+    const updateSendOtpButtonState = () => {
+      if (!sendOtpButton) return;
+      sendOtpButton.disabled = !/^[0-9]{10}$/.test(mobileInput?.value.trim() || '');
+    };
+
     const updateVerifyButtonState = () => {
       if (!verifyOtpButton || !otpInput) return;
-      verifyOtpButton.disabled = otpInput.value.trim().length !== 6;
+      verifyOtpButton.disabled = !otpSent || otpInput.value.trim().length !== 6;
     };
+
+    if (mobileInput) {
+      mobileInput.addEventListener('input', () => {
+        updateSendOtpButtonState();
+        if (!otpSent) {
+          toggleOtpFields(false);
+        }
+      });
+    }
 
     if (otpInput) {
       otpInput.addEventListener('input', updateVerifyButtonState);
-      updateVerifyButtonState();
     }
 
     if (sendOtpButton) {
@@ -539,6 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const result = await requestOtp(mobile);
         hideLoading();
         otpSent = true;
+        toggleOtpFields(true);
         if (otpInput) {
           otpInput.value = '';
           otpInput.focus();
@@ -582,6 +658,10 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('Login successful. Redirecting to your dashboard...', 'success');
       window.setTimeout(() => window.location.href = 'home.html', 500);
     });
+
+    updateSendOtpButtonState();
+    updateVerifyButtonState();
+    toggleOtpFields(false);
   };
 
   const initLocation = () => {

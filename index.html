@@ -11,63 +11,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="auth-page">
-  <header class="site-header">
-    <div class="header-inner">
+  <header class="site-header auth-header">
+    <div class="header-inner auth-header-inner">
       <a class="brand" href="index.html">
         <span class="brand-mark">UC</span>
         <span>UrbanChimney</span>
       </a>
-      <nav class="nav-links">
-        <a href="index.html" class="active">Login</a>
-        <a href="home.html">Home</a>
-        <a href="booking.html">Book</a>
-        <a href="track.html">Track</a>
-        <a href="profile.html">Profile</a>
-      </nav>
     </div>
   </header>
 
-  <main class="page-shell auth-shell">
-    <section class="hero-card">
-      <span class="hero-badge"><i class="fa-solid fa-shield-halved"></i> Trusted by 5,000+ happy homes</span>
-      <h1>Premium home services that feel effortless.</h1>
-      <p>Secure OTP login, verified technicians, transparent pricing, and a polished booking experience for every service you need.</p>
-      <div class="inline-actions">
-        <a class="btn btn-secondary" href="home.html">Explore services</a>
-        <a class="btn btn-success" href="track.html">Track booking</a>
-      </div>
-      <div class="stats-grid" style="margin-top: 18px;">
-        <div class="stat-card"><strong>24/7</strong><span class="muted">Support</span></div>
-        <div class="stat-card"><strong>4.9★</strong><span class="muted">Rated</span></div>
-        <div class="stat-card"><strong>30 min</strong><span class="muted">Response</span></div>
-        <div class="stat-card"><strong>100%</strong><span class="muted">Verified experts</span></div>
-      </div>
-    </section>
-
+  <main class="page-shell auth-shell auth-only-shell">
     <section class="form-card login-card">
       <div class="login-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-      <h2>Secure login</h2>
-      <p class="muted">Enter your mobile number and verify with OTP to continue.</p>
+      <h2>Welcome back</h2>
       <form id="loginForm">
         <div class="form-grid">
           <div class="full-width">
             <label for="mobile">Mobile number</label>
-            <input type="tel" id="mobile" maxlength="10" placeholder="Enter 10-digit mobile number" required>
+            <input type="tel" id="mobile" maxlength="10" placeholder="Enter 10-digit mobile number" required autocomplete="tel">
           </div>
           <div class="full-width">
+            <button class="btn btn-primary" type="button" id="sendOtpButton" disabled>Send OTP</button>
+          </div>
+          <div class="full-width otp-step" id="otpStep" hidden>
             <label for="otp">OTP</label>
-            <div class="otp-row">
-              <input type="text" id="otp" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
-              <button class="btn btn-secondary otp-btn" type="button" id="sendOtpButton">Send OTP</button>
-            </div>
+            <input type="text" id="otp" maxlength="6" placeholder="Enter 6-digit OTP" autocomplete="one-time-code">
+          </div>
+          <div class="full-width otp-step" id="verifyStep" hidden>
+            <button class="btn btn-success" type="submit" id="verifyOtpButton" disabled>Verify OTP</button>
           </div>
         </div>
         <div id="formMessage" class="form-message" aria-live="polite"></div>
-        <div class="inline-actions">
-          <button class="btn btn-primary" type="submit" id="verifyOtpButton" disabled>Verify & continue</button>
-        </div>
       </form>
-      <div class="notice">Demo OTP: 123456. This is a safe demo flow for a production-ready experience.</div>
     </section>
   </main>
 

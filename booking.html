@@ -19,10 +19,11 @@
       </a>
       <nav class="nav-links">
         <a href="home.html">Home</a>
-        <a href="booking.html" class="active">Booking</a>
-        <a href="payment.html">Payment</a>
+        <a href="services.html">Services</a>
+        <a href="spare-parts.html">Spare Parts</a>
         <a href="track.html">Tracking</a>
         <a href="profile.html">Profile</a>
+        <a href="admin.html">Admin</a>
         <button type="button" id="logoutButton">Logout</button>
       </nav>
     </div>
@@ -30,120 +31,60 @@
 
   <main class="page-shell">
     <div class="booking-shell">
-      <section class="summary-card">
+      <section class="summary-card premium-card">
         <div class="section-title">
           <div>
             <h2>Booking overview</h2>
-            <p class="muted">A guided step-by-step booking experience built for convenience.</p>
+            <p class="muted">Simple booking with the selected chimney service already prefilled.</p>
           </div>
         </div>
         <div class="summary-grid">
           <div class="stat-card">
-            <strong id="summaryService">Select service</strong>
-            <span class="muted">Service type</span>
+            <strong id="bookingServiceName">Chimney Basic Cleaning</strong>
+            <span class="muted">Selected service</span>
           </div>
           <div class="stat-card">
-            <strong id="summaryDate">Choose date</strong>
-            <span class="muted">Preferred date</span>
-          </div>
-          <div class="stat-card">
-            <strong id="summaryTime">Choose time</strong>
-            <span class="muted">Preferred time</span>
-          </div>
-          <div class="stat-card">
-            <strong id="summaryAddress">Enter address</strong>
-            <span class="muted">Location details</span>
+            <strong id="bookingPriceLabel">₹599</strong>
+            <span class="muted">Service price</span>
           </div>
         </div>
-        <div class="notice">We will confirm your booking instantly and share technician details before arrival.</div>
+        <div class="notice">Your booking will be confirmed instantly and moved to the payment page.</div>
       </section>
 
-      <section class="form-card">
+      <section class="form-card premium-card">
         <div class="section-title">
           <div>
-            <h2>Book your service</h2>
-            <p class="muted">Complete one step at a time.</p>
+            <h2>Book your chimney service</h2>
+            <p class="muted">Only need to fill the essentials to confirm.</p>
           </div>
-          <a class="btn btn-secondary" href="home.html">Back</a>
-        </div>
-        <div class="stepper">
-          <span class="step-chip active" data-step-chip="1">1. Service</span>
-          <span class="step-chip" data-step-chip="2">2. Date</span>
-          <span class="step-chip" data-step-chip="3">3. Time</span>
-          <span class="step-chip" data-step-chip="4">4. Address</span>
-          <span class="step-chip" data-step-chip="5">5. Confirm</span>
+          <a class="btn btn-secondary" href="services.html">Back</a>
         </div>
         <form id="bookingForm">
-          <div class="step-panel active" data-step-panel="1">
-            <label for="service">Choose a service</label>
-            <div class="option-grid" id="serviceOptions">
-              <div class="option-card" data-service="Chimney Cleaning">Chimney Cleaning</div>
-              <div class="option-card" data-service="AC Service">AC Service</div>
-              <div class="option-card" data-service="Electrical">Electrical</div>
-              <div class="option-card" data-service="Plumbing">Plumbing</div>
-              <div class="option-card" data-service="Cleaning">Cleaning</div>
-              <div class="option-card" data-service="Painting">Painting</div>
+          <input type="hidden" id="service" name="service">
+          <input type="hidden" id="servicePrice" name="servicePrice">
+          <div class="form-grid">
+            <div>
+              <label for="date">Date</label>
+              <input type="date" id="date" name="date" required>
             </div>
-            <input type="hidden" id="service" name="service">
-          </div>
-
-          <div class="step-panel" data-step-panel="2">
-            <label for="date">Choose a date</label>
-            <input type="date" id="date" name="date" required>
-          </div>
-
-          <div class="step-panel" data-step-panel="3">
-            <label for="time">Choose a time</label>
-            <input type="time" id="time" name="time" required>
-          </div>
-
-          <div class="step-panel" data-step-panel="4">
-            <div class="form-grid">
-              <div class="full-width">
-                <label for="bookingName">Customer name</label>
-                <input type="text" id="bookingName" name="bookingName" placeholder="Enter your full name" required>
-              </div>
-              <div>
-                <label for="bookingMobile">Mobile number</label>
-                <input type="tel" id="bookingMobile" name="bookingMobile" maxlength="10" placeholder="Enter 10-digit number" required>
-              </div>
-              <div>
-                <label for="bookingCity">City</label>
-                <select id="bookingCity" name="bookingCity" required>
-                  <option value="">Choose city</option>
-                  <option>Hyderabad</option>
-                  <option>Chennai</option>
-                  <option>Bangalore</option>
-                  <option>Pune</option>
-                </select>
-              </div>
-              <div class="full-width">
-                <label for="address">Full address</label>
-                <textarea id="address" name="address" rows="3" placeholder="Enter complete address" required></textarea>
-              </div>
-              <div class="full-width">
-                <label for="location">Location link</label>
-                <input type="text" id="location" name="location" placeholder="Location will appear here" readonly>
-              </div>
-              <div class="full-width">
-                <button class="btn btn-secondary" type="button" id="locationButton"><i class="fa-solid fa-location-crosshairs"></i> Get my location</button>
-              </div>
+            <div>
+              <label for="time">Time</label>
+              <input type="time" id="time" name="time" required>
+            </div>
+            <div class="full-width">
+              <label for="address">Address</label>
+              <textarea id="address" name="address" rows="4" placeholder="Enter complete address" required></textarea>
+            </div>
+            <div class="full-width">
+              <label for="location">Location link</label>
+              <input type="text" id="location" name="location" placeholder="Location will appear here" readonly>
+            </div>
+            <div class="full-width">
+              <button class="btn btn-secondary" type="button" id="locationButton"><i class="fa-solid fa-location-crosshairs"></i> Get my location</button>
             </div>
           </div>
-
-          <div class="step-panel" data-step-panel="5">
-            <div class="notice">
-              <strong>Booking summary</strong>
-              <div class="detail-item"><span class="detail-label">Service</span><span id="confirmService">-</span></div>
-              <div class="detail-item"><span class="detail-label">Date</span><span id="confirmDate">-</span></div>
-              <div class="detail-item"><span class="detail-label">Time</span><span id="confirmTime">-</span></div>
-              <div class="detail-item"><span class="detail-label">Address</span><span id="confirmAddress">-</span></div>
-            </div>
-          </div>
-
           <div class="inline-actions">
-            <button class="btn btn-secondary" type="button" id="prevStepButton">Back</button>
-            <button class="btn btn-primary" type="button" id="nextStepButton">Next</button>
+            <button class="btn btn-primary" type="submit">Confirm Booking</button>
           </div>
         </form>
       </section>

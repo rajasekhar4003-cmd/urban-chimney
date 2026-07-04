@@ -1,179 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book Service - UrbanChimney</title>
-
-<style>
-
-/* ===== BACKGROUND ===== */
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:15px;
-    background: linear-gradient(-45deg, #0f172a, #1e3a8a, #0ea5e9, #22c55e);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-}
-
-@keyframes gradientBG{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-/* ===== FORM ===== */
-form{
-    width:100%;
-    max-width:450px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    border-radius:18px;
-    padding:22px;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
-    border:1px solid rgba(255,255,255,0.2);
-}
-
-/* TITLE */
-h2{
-    text-align:center;
-    color:white;
-    margin-bottom:18px;
-    font-size:24px;
-}
-
-/* INPUTS */
-input{
-    width:100%;
-    padding:14px;
-    margin:8px 0;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    outline:none;
-    background: rgba(255,255,255,0.9);
-}
-
-/* LOCATION BUTTON */
-.loc-btn{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:12px;
-    font-size:16px;
-    background:#0ea5e9;
-    color:white;
-    cursor:pointer;
-}
-
-.loc-btn:hover{
-    background:#0284c7;
-}
-
-/* SUBMIT BUTTON */
-button{
-    width:100%;
-    padding:14px;
-    margin-top:12px;
-    border:none;
-    border-radius:12px;
-    font-size:18px;
-    font-weight:bold;
-    color:white;
-    background: linear-gradient(90deg,#22c55e,#16a34a);
-    cursor:pointer;
-}
-
-button:hover{
-    transform: scale(1.03);
-}
-
-/* MOBILE */
-@media (max-width: 480px){
-    form{
-        max-width:100%;
-        padding:18px;
-    }
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Service - UrbanChimney</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Welcome</a>
+        <a href="home.html">Home</a>
+        <a href="booking.html" class="active">Book</a>
+        <a href="track.html">Track</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </div>
+  </header>
 
-<form action="https://formsubmit.co/rajasekhar4003@gmail.com" method="POST">
+  <main class="page-shell">
+    <section class="form-card" style="max-width: 760px; margin: 18px auto 0;">
+      <h2>Book your chimney service</h2>
+      <p class="muted">Fill in your details and we’ll guide the technician to your doorstep.</p>
+      <form id="bookingForm">
+        <div class="form-grid">
+          <div>
+            <label for="bookingName">Full name</label>
+            <input type="text" id="bookingName" placeholder="Enter your name" required>
+          </div>
+          <div>
+            <label for="bookingMobile">Mobile number</label>
+            <input type="tel" id="bookingMobile" maxlength="10" placeholder="Enter 10 digit number" required>
+          </div>
+          <div>
+            <label for="bookingCity">City</label>
+            <select id="bookingCity" required>
+              <option value="">Choose city</option>
+              <option>Hyderabad</option>
+              <option>Chennai</option>
+              <option>Bangalore</option>
+              <option>Pune</option>
+            </select>
+          </div>
+          <div>
+            <label for="service">Service type</label>
+            <select id="service" required>
+              <option value="">Select service</option>
+              <option>Chimney Cleaning</option>
+              <option>Repair & Maintenance</option>
+              <option>Spare Parts</option>
+            </select>
+          </div>
+          <div class="full-width">
+            <label for="address">Full address</label>
+            <textarea id="address" rows="3" placeholder="Enter complete address" required></textarea>
+          </div>
+          <div class="full-width">
+            <label for="location">Location link</label>
+            <input type="text" id="location" placeholder="Location will appear here" readonly>
+          </div>
+          <div class="full-width">
+            <button class="btn btn-secondary" type="button" id="locationButton">Get my location</button>
+          </div>
+          <div>
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" required>
+          </div>
+          <div>
+            <label for="time">Preferred time</label>
+            <input type="time" id="time" required>
+          </div>
+        </div>
+        <div class="inline-actions">
+          <button class="btn btn-primary" type="submit">Continue to payment</button>
+          <a class="btn btn-secondary" href="home.html">Back to home</a>
+        </div>
+      </form>
+    </section>
+  </main>
 
-<h2>🏠 Book UrbanChimney Service</h2>
-
-<input type="text" name="name" placeholder="Name" required>
-<input type="text" name="mobile" placeholder="Mobile Number" required>
-<input type="text" name="city" placeholder="City" required>
-<input type="text" name="service" placeholder="Service Type" required>
-<input type="text" name="address" placeholder="Full Address" required>
-<input type="text" name="landmark" placeholder="Landmark">
-
-<!-- LOCATION FIELD -->
-<input type="text" id="location" name="location" placeholder="Location will appear here" readonly>
-
-<button type="button" class="loc-btn" onclick="getLocation()">
-📍 Get My Location
-</button>
-
-<input type="date" name="date" required>
-<input type="time" name="time" required>
-
-<input type="hidden" name="_subject" value="🏠 New UrbanChimney Booking">
-<input type="hidden" name="_captcha" value="false">
-
-<button type="submit">Confirm Booking</button>
-
-</form>
-
-<script>
-
-function getLocation(){
-
-    if(navigator.geolocation){
-
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-
-    } else {
-        alert("Geolocation not supported");
-    }
-}
-
-function showPosition(position){
-
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
-
-    let mapLink = "https://www.google.com/maps?q=" + lat + "," + lon;
-
-    document.getElementById("location").value = mapLink;
-
-    alert("Location added successfully!");
-}
-
-function showError(error){
-
-    if(error.code == 1){
-        alert("Permission denied");
-    } else if(error.code == 2){
-        alert("Location unavailable");
-    } else if(error.code == 3){
-        alert("Request timeout");
-    } else {
-        alert("Unknown error");
-    }
-}
-
-</script>
-
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
+    </div>
+    <p>UrbanChimney © 2026 • Easy booking experience.</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -1,75 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UrbanChimney.in | Home Services</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanChimney | Home Services</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-<div class="login-container">
-
-    <div class="logo">
-        <img src="logo.png" alt="Urban Chimney Logo" width="180">
-        <h1>UrbanChimney.in</h1>
-        <p>Clean Air • Safe Home</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="active">Welcome</a>
+        <a href="home.html">Home</a>
+        <a href="booking.html">Book</a>
+        <a href="track.html">Track</a>
+        <a href="profile.html">Profile</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card">
+  <main class="page-shell auth-shell">
+    <section class="hero-card">
+      <span class="hero-badge">Trusted by 5,000+ homes</span>
+      <h1>Secure doorstep chimney service with OTP login.</h1>
+      <p>Verify your mobile number effortlessly, book fast, and track your technician from anywhere.</p>
+      <div class="inline-actions">
+        <a class="btn btn-secondary" href="booking.html">Book a service</a>
+        <a class="btn btn-success" href="track.html">Track booking</a>
+      </div>
+      <div class="stats-grid">
+        <div class="stat"><strong>24/7</strong><span>Support</span></div>
+        <div class="stat"><strong>4.9★</strong><span>Rated</span></div>
+        <div class="stat"><strong>30 min</strong><span>Response</span></div>
+        <div class="stat"><strong>100%</strong><span>Genuine parts</span></div>
+      </div>
+    </section>
 
-        <h2>Welcome</h2>
+    <section class="form-card login-card">
+      <div class="login-icon">🔐</div>
+      <h2>Welcome back</h2>
+      <p class="muted">Enter your mobile number and verify with OTP to continue.</p>
+      <form id="loginForm">
+        <div class="form-grid">
+          <div class="full-width">
+            <label for="mobile">Mobile number</label>
+            <input type="tel" id="mobile" maxlength="10" placeholder="Enter 10 digit mobile number" required>
+          </div>
+          <div class="full-width">
+            <label for="otp">OTP</label>
+            <div class="otp-row">
+              <input type="text" id="otp" maxlength="4" placeholder="Enter 4-digit OTP" autocomplete="one-time-code">
+              <button class="btn btn-secondary otp-btn" type="button" id="sendOtpButton">Send OTP</button>
+            </div>
+          </div>
+        </div>
+        <div id="formMessage" class="form-message" aria-live="polite"></div>
+        <div class="inline-actions">
+          <button class="btn btn-primary" type="submit" id="verifyOtpButton" disabled>Verify & continue</button>
+        </div>
+      </form>
+      <div class="notice">Demo OTP: 1234. A real SMS provider can be integrated later.</div>
+    </section>
+  </main>
 
-        <form id="loginForm">
-
-            <label>Name</label>
-            <input
-                type="text"
-                id="name"
-                placeholder="Enter your full name"
-                required>
-
-            <label>Mobile Number</label>
-            <input
-                type="tel"
-                id="mobile"
-                maxlength="10"
-                placeholder="Enter 10 digit mobile number"
-                required>
-
-            <label>Select City</label>
-
-            <select id="city" required>
-                <option value="">Choose City</option>
-                <option>Hyderabad</option>
-                <option>Chennai</option>
-                <option>Bangalore</option>
-            </select>
-
-            <button type="submit">
-                Continue
-            </button>
-
-        </form>
-
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
     </div>
-
-    <div class="footer">
-        <p>✔ Trusted Chimney Experts</p>
-        <p>✔ Fast Doorstep Service</p>
-        <p>✔ Genuine Spare Parts</p>
-    </div>
-
-</div>
-
-<script src="app.js"></script>
-
+    <p>UrbanChimney © 2026 • Clean air, safe homes.</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>

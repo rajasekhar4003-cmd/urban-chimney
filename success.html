@@ -1,131 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booking Successful</title>
-
-<style>
-
-body{
-    margin:0;
-    font-family: Arial, sans-serif;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background: linear-gradient(135deg,#0f172a,#1e3a8a,#0ea5e9);
-}
-
-.card{
-    width:90%;
-    max-width:420px;
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-    color:white;
-    box-shadow:0 0 20px rgba(0,0,0,0.4);
-}
-
-h1{
-    color:#22c55e;
-    font-size:50px;
-    margin:0;
-}
-
-h2{
-    margin:10px 0;
-}
-
-p{
-    margin:8px 0;
-    font-size:15px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.home{
-    background:#22c55e;
-    color:white;
-}
-
-.track{
-    background:#0ea5e9;
-    color:white;
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Successful</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+    </div>
+  </header>
 
-<div class="card">
-
-<h1>✅</h1>
-<h2>Booking Confirmed</h2>
-
-<p>Your service booking has been confirmed.</p>
-
-<h3 id="bookingId"></h3>
-
-<p><b>Service:</b></p>
-<p id="service">Loading...</p>
-
-<p><b>Payment:</b></p>
-<p id="payment">Loading...</p>
-
-<button class="home" onclick="goHome()">Home</button>
-<button class="track" onclick="trackBooking()">Track Booking</button>
-
-</div>
-
-<script>
-
-// GET DATA SAFELY
-let service = localStorage.getItem("selectedService");
-let payment = localStorage.getItem("paymentMethod");
-
-// FIX EMPTY ISSUE
-if(!service){
-    service = "Not Selected";
-}
-if(!payment){
-    payment = "Not Available";
-}
-
-// SHOW DATA
-document.getElementById("service").innerText = service;
-document.getElementById("payment").innerText = payment;
-
-// BOOKING ID
-let booking = "UC" + Math.floor(Math.random() * 900000 + 100000);
-
-document.getElementById("bookingId").innerText =
-"Booking ID: " + booking;
-
-// SAVE
-localStorage.setItem("bookingId", booking);
-
-// BUTTONS
-function goHome(){
-    window.location.href = "home.html";
-}
-
-function trackBooking(){
-    window.location.href = "track.html";
-}
-
-</script>
-
+  <main class="page-shell">
+    <section class="form-card" style="max-width: 620px; margin: 40px auto 0; text-align: center;">
+      <h1 style="font-size: 3rem; margin-bottom: 8px; color: var(--success);">✓</h1>
+      <h2>Booking confirmed</h2>
+      <p class="muted">Your service request is ready and a technician will contact you shortly.</p>
+      <div class="notice">
+        <strong>Booking ID:</strong> <span id="successBookingId"></span>
+      </div>
+      <div class="form-grid" style="margin-top: 18px; text-align: left;">
+        <div>
+          <label>Service</label>
+          <p id="successService" class="muted"></p>
+        </div>
+        <div>
+          <label>Payment</label>
+          <p id="successPayment" class="muted"></p>
+        </div>
+      </div>
+      <div class="inline-actions" style="justify-content: center;">
+        <a class="btn btn-primary" href="home.html">Back home</a>
+        <a class="btn btn-secondary" href="track.html">Track booking</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
+    </div>
+    <p>UrbanChimney © 2026 • Trusted citywide service.</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>

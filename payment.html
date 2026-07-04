@@ -1,26 +1,68 @@
-<script>
-function payNow(){
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment | UrbanChimney</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Welcome</a>
+        <a href="home.html">Home</a>
+        <a href="booking.html">Book</a>
+        <a href="track.html">Track</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </div>
+  </header>
 
-let payment =
-document.querySelector('input[name="payment"]:checked').value;
+  <main class="page-shell">
+    <section class="form-card" style="max-width: 700px; margin: 18px auto 0;">
+      <h2>Choose a payment method</h2>
+      <p class="muted">Secure payment for your selected service package.</p>
+      <form id="paymentForm">
+        <div class="payment-options">
+          <label class="payment-option selected">
+            <span><strong>UPI</strong><br><span class="muted">Fast and convenient</span></span>
+            <span>₹499</span>
+            <input type="radio" name="payment" value="UPI" checked>
+          </label>
+          <label class="payment-option">
+            <span><strong>Card</strong><br><span class="muted">Visa, Mastercard, RuPay</span></span>
+            <span>₹499</span>
+            <input type="radio" name="payment" value="Card">
+          </label>
+          <label class="payment-option">
+            <span><strong>Cash on delivery</strong><br><span class="muted">Pay at your doorstep</span></span>
+            <span>₹499</span>
+            <input type="radio" name="payment" value="Cash on delivery">
+          </label>
+        </div>
+        <div class="inline-actions">
+          <button class="btn btn-primary" type="submit">Confirm payment</button>
+          <a class="btn btn-secondary" href="booking.html">Back</a>
+        </div>
+      </form>
+    </section>
+  </main>
 
-localStorage.setItem("paymentMethod",payment);
-
-// YOUR UPI ID
-let upiID = "9701434006-5@YBL";
-
-// Merchant name
-let name = "UrbanChimney";
-
-// Optional amount (you can change)
-let amount = "499";
-
-// UPI Deep Link (works in GPay, PhonePe, Paytm)
-let upiLink =
-`upi://pay?pa=${upiID}&pn=${name}&am=${amount}&cu=INR&tn=UrbanChimney%20Payment`;
-
-// Open UPI app
-window.location.href = upiLink;
-
-}
-</script>
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
+    </div>
+    <p>UrbanChimney © 2026 • Safe transactions.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

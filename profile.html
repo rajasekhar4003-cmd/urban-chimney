@@ -2,59 +2,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Profile | UrbanChimney</title>
-
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | UrbanChimney</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Welcome</a>
+        <a href="home.html">Home</a>
+        <a href="booking.html">Book</a>
+        <a href="track.html">Track</a>
+        <a href="profile.html" class="active">Profile</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="login-container">
+  <main class="page-shell">
+    <section class="form-card" style="max-width: 600px; margin: 18px auto 0;">
+      <h2>My profile</h2>
+      <p class="muted">Your saved customer details appear here.</p>
+      <div class="form-grid">
+        <div class="full-width">
+          <label for="profileName">Name</label>
+          <input type="text" id="profileName" readonly>
+        </div>
+        <div class="full-width">
+          <label for="profileMobile">Mobile</label>
+          <input type="text" id="profileMobile" readonly>
+        </div>
+        <div class="full-width">
+          <label for="profileCity">City</label>
+          <input type="text" id="profileCity" readonly>
+        </div>
+      </div>
+      <div class="inline-actions">
+        <a class="btn btn-primary" href="track.html">My bookings</a>
+        <a class="btn btn-secondary" href="home.html">Back home</a>
+      </div>
+    </section>
+  </main>
 
-<div class="card">
-
-<h2>👤 My Profile</h2>
-
-<p><strong>Name</strong></p>
-<input type="text" id="name" readonly>
-
-<p><strong>Mobile</strong></p>
-<input type="text" id="mobile" readonly>
-
-<p><strong>City</strong></p>
-<input type="text" id="city" readonly>
-
-<br>
-
-<button onclick="window.location.href='track.html'">
-My Bookings
-</button>
-
-<br><br>
-
-<button onclick="window.location.href='home.html'">
-Home
-</button>
-
-</div>
-
-</div>
-
-<script>
-
-document.getElementById("name").value =
-localStorage.getItem("customerName");
-
-document.getElementById("mobile").value =
-localStorage.getItem("customerMobile");
-
-document.getElementById("city").value =
-localStorage.getItem("customerCity");
-
-</script>
-
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
+    </div>
+    <p>UrbanChimney © 2026 • Profile overview.</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>
 ```

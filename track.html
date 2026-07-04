@@ -2,80 +2,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Track Booking | UrbanChimney</title>
-
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Booking | UrbanChimney</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">
+        <img src="logo.png" alt="Urban Chimney logo">
+        <span>UrbanChimney</span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Welcome</a>
+        <a href="home.html">Home</a>
+        <a href="booking.html">Book</a>
+        <a href="track.html" class="active">Track</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="login-container">
+  <main class="page-shell">
+    <section class="form-card" style="max-width: 720px; margin: 18px auto 0;">
+      <h2>Track your booking</h2>
+      <p class="muted">Current status and service details for your booking.</p>
+      <div class="form-grid">
+        <div>
+          <label>Booking ID</label>
+          <p id="bookingId" class="muted"></p>
+        </div>
+        <div>
+          <label>Customer name</label>
+          <p id="customer" class="muted"></p>
+        </div>
+        <div>
+          <label>Service</label>
+          <p id="serviceOutput" class="muted"></p>
+        </div>
+        <div>
+          <label>Address</label>
+          <p id="addressOutput" class="muted"></p>
+        </div>
+        <div>
+          <label>Date</label>
+          <p id="dateOutput" class="muted"></p>
+        </div>
+        <div>
+          <label>Time</label>
+          <p id="timeOutput" class="muted"></p>
+        </div>
+      </div>
+      <div class="notice">
+        <strong>Booking status</strong>
+        <ul class="status-list">
+          <li>✅ Booking confirmed</li>
+          <li>👨‍🔧 Technician will be assigned soon</li>
+          <li>🚗 Technician on the way</li>
+          <li>🎉 Service completed</li>
+        </ul>
+      </div>
+      <div class="inline-actions">
+        <a class="btn btn-primary" href="home.html">Back to home</a>
+        <a class="btn btn-secondary" href="profile.html">View profile</a>
+      </div>
+    </section>
+  </main>
 
-<div class="card">
-
-<h2>Track Your Booking</h2>
-
-<p><strong>Booking ID</strong></p>
-<p id="bookingId"></p>
-
-<p><strong>Customer Name</strong></p>
-<p id="customer"></p>
-
-<p><strong>Service</strong></p>
-<p id="service"></p>
-
-<p><strong>Address</strong></p>
-<p id="address"></p>
-
-<p><strong>Date</strong></p>
-<p id="date"></p>
-
-<p><strong>Time</strong></p>
-<p id="time"></p>
-
-<hr>
-
-<h3>Booking Status</h3>
-
-<p>✅ Booking Confirmed</p>
-<p>👨‍🔧 Technician will be assigned soon</p>
-<p>🚗 Technician On the Way</p>
-<p>🎉 Service Completed</p>
-
-<br>
-
-<button onclick="window.location.href='home.html'">
-Back to Home
-</button>
-
-</div>
-
-</div>
-
-<script>
-
-document.getElementById("bookingId").innerHTML =
-localStorage.getItem("bookingId");
-
-document.getElementById("customer").innerHTML =
-localStorage.getItem("customerName");
-
-document.getElementById("service").innerHTML =
-localStorage.getItem("selectedService");
-
-document.getElementById("address").innerHTML =
-localStorage.getItem("address");
-
-document.getElementById("date").innerHTML =
-localStorage.getItem("date");
-
-document.getElementById("time").innerHTML =
-localStorage.getItem("time");
-
-</script>
-
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="logo.png" alt="UrbanChimney logo">
+      <span>UrbanChimney</span>
+    </div>
+    <p>UrbanChimney © 2026 • Real-time updates.</p>
+  </footer>
+  <script src="app.js"></script>
 </body>
 </html>
 ```
